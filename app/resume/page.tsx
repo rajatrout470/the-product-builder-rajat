@@ -1,6 +1,19 @@
 'use client'
 
 export default function ResumePage() {
+  const handleDownload = async () => {
+    const element = document.getElementById('resume-content')
+    if (!element) return
+    const mod = await import('html2pdf.js')
+    const html2pdf = mod.default ?? mod
+    html2pdf().set({
+      margin: 10,
+      filename: 'rajat-kumar-rout-resume.pdf',
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    }).from(element).save()
+  }
+
   return (
     <>
       <style>{`
@@ -16,7 +29,7 @@ export default function ResumePage() {
       <div className="no-print sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
         <a href="/" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">← Back to portfolio</a>
         <button
-          onClick={() => window.print()}
+          onClick={handleDownload}
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-violet-600 text-white text-sm font-medium hover:bg-violet-700 transition-colors"
         >
           <span>↓</span> Download PDF
@@ -24,7 +37,7 @@ export default function ResumePage() {
       </div>
 
       {/* Resume page */}
-      <div className="page bg-white mx-auto my-8 no-print:shadow-lg max-w-[794px] px-12 py-10 text-[13px] leading-snug text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <div id="resume-content" className="page bg-white mx-auto my-8 no-print:shadow-lg max-w-[794px] px-12 py-10 text-[13px] leading-snug text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>
 
         {/* Header */}
         <div className="mb-6 pb-5 border-b border-gray-200">
