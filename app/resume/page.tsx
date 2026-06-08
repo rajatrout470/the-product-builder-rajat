@@ -1,44 +1,44 @@
 'use client'
 
 export default function ResumePage() {
-  const handleDownload = async () => {
-    const element = document.getElementById('resume-content')
-    if (!element) return
-    const mod = await import('html2pdf.js')
-    const html2pdf = mod.default ?? mod
-    html2pdf().set({
-      margin: 10,
-      filename: 'rajat-kumar-rout-resume.pdf',
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    }).from(element).save()
-  }
-
   return (
     <>
       <style>{`
         @media print {
           .no-print { display: none !important; }
-          body { background: white; }
-          .page { box-shadow: none; margin: 0; padding: 28px 36px; max-width: 100%; }
+          body { background: white !important; margin: 0; }
+          .page {
+            box-shadow: none !important;
+            margin: 0 !important;
+            padding: 24px 32px !important;
+            max-width: 100% !important;
+            border-radius: 0 !important;
+          }
         }
         @page { size: A4; margin: 0; }
       `}</style>
 
-      {/* Toolbar — hidden when printing */}
+      {/* Toolbar */}
       <div className="no-print sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
         <a href="/" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">← Back to portfolio</a>
-        <button
-          onClick={handleDownload}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-violet-600 text-white text-sm font-medium hover:bg-violet-700 transition-colors"
-        >
-          <span>↓</span> Download PDF
-        </button>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-gray-400 hidden sm:block">Browser will open Save as PDF dialog</span>
+          <button
+            onClick={() => window.print()}
+            style={{ backgroundColor: '#7c3aed', color: '#ffffff' }}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          >
+            <span>↓</span> Download PDF
+          </button>
+        </div>
       </div>
 
       {/* Resume page */}
-      <div id="resume-content" className="page bg-white mx-auto my-8 no-print:shadow-lg max-w-[794px] px-12 py-10 text-[13px] leading-snug text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>
-
+      <div
+        id="resume-content"
+        className="page bg-white mx-auto my-8 shadow-lg max-w-[794px] px-12 py-10 text-[13px] leading-snug text-gray-900"
+        style={{ fontFamily: 'Inter, sans-serif' }}
+      >
         {/* Header */}
         <div className="mb-6 pb-5 border-b border-gray-200">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-1">Rajat Kumar Rout</h1>
@@ -133,7 +133,6 @@ export default function ResumePage() {
             ))}
           </div>
         </Section>
-
       </div>
     </>
   )
@@ -142,7 +141,7 @@ export default function ResumePage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-6">
-      <h2 className="text-xs font-bold uppercase tracking-widest text-violet-600 mb-3 pb-1 border-b border-gray-100">
+      <h2 className="text-xs font-bold uppercase tracking-widest mb-3 pb-1 border-b border-gray-100" style={{ color: '#7c3aed' }}>
         {title}
       </h2>
       {children}
@@ -168,7 +167,7 @@ function Job({ company, role, period, bullets }: {
       <ul className="space-y-1">
         {bullets.map((b, i) => (
           <li key={i} className="flex gap-2 text-gray-600">
-            <span className="text-violet-400 shrink-0 mt-0.5">·</span>
+            <span className="shrink-0 mt-0.5" style={{ color: '#7c3aed' }}>·</span>
             {b}
           </li>
         ))}
