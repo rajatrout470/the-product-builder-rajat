@@ -115,6 +115,13 @@ export default function Terminal() {
     return () => window.removeEventListener('keydown', h)
   }, [open, openTerminal])
 
+  // Listen for nav button trigger
+  useEffect(() => {
+    const h = () => openTerminal()
+    window.addEventListener('open-terminal', h)
+    return () => window.removeEventListener('open-terminal', h)
+  }, [openTerminal])
+
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
   }, [lines])
@@ -130,22 +137,6 @@ export default function Terminal() {
 
   return (
     <>
-      {/* Hint */}
-      <AnimatePresence>
-        {!open && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ delay: 2.5 }}
-            className="fixed bottom-6 left-6 z-40 font-mono text-[11px] text-muted pointer-events-none hidden md:flex items-center gap-1.5"
-          >
-            <kbd className="px-1.5 py-0.5 rounded border border-dim bg-white text-slate-500 text-[10px]">` </kbd>
-            or
-            <kbd className="px-1.5 py-0.5 rounded border border-dim bg-white text-slate-500 text-[10px]">Ctrl K</kbd>
-            <span>— open terminal</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <AnimatePresence>
         {open && (
           <>

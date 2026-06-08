@@ -49,9 +49,10 @@ export default function Home() {
 
       {/* Resume download */}
       <a
-        href="/resume.pdf"
-        download
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-white text-slate-700 text-sm font-medium shadow-card hover:shadow-card-hover hover:border-green/40 hover:text-green transition-all duration-200"
+        href="/resume"
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-white text-slate-700 text-sm font-medium shadow-card hover:shadow-card-hover hover:border-violet/40 hover:text-violet transition-all duration-200"
       >
         <span className="font-mono text-xs">↓</span>
         <span>Resume</span>
