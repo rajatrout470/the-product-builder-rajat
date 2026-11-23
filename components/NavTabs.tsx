@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ThemeToggle from './ThemeToggle'
+import { SoundToggle } from './ClickSound'
 
 const NAV = [
   { id: 'about',        label: 'About'      },
@@ -86,6 +87,7 @@ export default function NavHeader() {
             ))}
           </nav>
 
+          <SoundToggle />
           <ThemeToggle />
 
           {/* Terminal button — always visible */}

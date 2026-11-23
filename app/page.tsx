@@ -15,6 +15,7 @@ import Metrics     from '@/components/sections/Metrics'
 import Contact     from '@/components/sections/Contact'
 import Terminal    from '@/components/Terminal'
 import CursorEffect from '@/components/CursorEffect'
+import ClickSound   from '@/components/ClickSound'
 
 function Section({ id, children }: { id: string; children: React.ReactNode }) {
   return (
@@ -125,6 +126,7 @@ export default function Home() {
 
       <Terminal />
       <CursorEffect />
+      <ClickSound />
     </main>
   )
 }

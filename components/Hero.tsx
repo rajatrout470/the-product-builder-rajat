@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import ThemeToggle from './ThemeToggle'
+import { SoundToggle } from './ClickSound'
 
 const tagline = 'backend_engineer.service — shipping LLM agents since 2024'
 
@@ -40,7 +41,8 @@ export default function Hero({ explored, onExplore, onToggle }: {
   return (
     <div className={`relative flex flex-col justify-center ${explored ? 'pt-16 pb-20' : 'min-h-[100svh] py-16'}`}>
       {!explored && (
-        <div className="absolute top-5 right-0 z-10">
+        <div className="absolute top-5 right-0 z-10 flex items-center gap-2">
+          <SoundToggle />
           <ThemeToggle />
         </div>
       )}
