@@ -16,7 +16,7 @@ const auditLines = [
   { key: 'microservices upgraded',  val: '7+',                                          valCls: 'text-emerald-400' },
   { key: 'manual workload reduced', val: '90%',                                         valCls: 'text-violet-400'  },
   { key: 'AI tooling',              val: 'Cursor AI, Claude Code',                     valCls: 'text-amber-400'   },
-  { key: 'ai systems shipped',      val: 'Procurement Chatbot, Laksh AI, Vendor Matching', valCls: 'text-sky-400'  },
+  { key: 'ai systems shipped',      val: 'Multi-Agent Procurement Platform, Procurement Chatbot, Laksh AI, Vendor Matching', valCls: 'text-sky-400' },
   { key: 'llms in production',      val: 'Claude, GPT-4, Llama 3',                       valCls: 'text-violet-400' },
   { key: 'systems shipped',         val: 'Credit Engine, Search, Notifications, Loans', valCls: 'text-sky-400'     },
   { key: 'status',                  val: 'HEALTHY ✓',                                   valCls: 'text-emerald-400' },

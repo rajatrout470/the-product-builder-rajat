@@ -16,7 +16,7 @@ const badges = [
 
 const stats = [
   { value: '4',   label: 'years backend' },
-  { value: '3',   label: 'AI systems shipped' },
+  { value: '6',   label: 'AI agents & LLM systems' },
   { value: '98%', label: 'loans auto-processed' },
   { value: '40%', label: 'faster delivery w/ AI tools' },
 ]
@@ -88,8 +88,8 @@ export default function Hero({ explored, onExplore, onToggle }: {
           transition={{ delay: 0.5, duration: 0.4 }}
           className="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-relaxed mb-8 max-w-2xl"
         >
-          Founding Product Engineer at FlyWl — multi-LLM chatbots with MCP tool calling, SSE streaming and
-          LLM evals, on top of NestJS microservices, Kafka, ElasticSearch and AWS.
+          Founding Product Engineer at FlyWl — a multi-agent procurement AI platform and a multi-LLM chatbot with
+          MCP tool calling, SSE streaming and LLM evals, on top of NestJS microservices, Kafka, ElasticSearch and AWS.
         </motion.p>
 
         {/* CTAs */}

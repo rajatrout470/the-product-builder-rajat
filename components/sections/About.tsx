@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 const cards = [
   {
     label: 'Current Mission',
-    body:  'Owning backend systems end-to-end at FlyWl — from a multi-LLM AI chatbot with MCP tool calling to credit ledgers, search and notification pipelines.',
+    body:  'Owning backend systems end-to-end at FlyWl — a multi-agent procurement AI platform, a multi-LLM chatbot with MCP tool calling, credit ledgers, search and notification pipelines.',
   },
   {
     label: 'Core Philosophy',
@@ -65,7 +65,7 @@ export default function About() {
               ['"location"',   '"Bengaluru, India"'],
               ['"status"',     '"AVAILABLE_FOR_HIRE"'],
               ['"stack"',      '["NestJS","Node.js","AWS","Kafka","ElasticSearch"]'],
-              ['"ai"',         '["Claude","OpenAI","Llama 3","MCP","RAG","Langfuse"]'],
+              ['"ai"',         '["Multi-Agent","Claude","OpenAI","Llama 3","MCP","RAG","Langfuse"]'],
             ].map(([k, v]) => (
               <div key={k} className="flex gap-1.5 flex-wrap">
                 <span className="text-violet-400">{k}</span>
@@ -100,7 +100,8 @@ export default function About() {
           and vector databases. Currently{' '}
           <span className="font-semibold text-slate-900 dark:text-slate-100">Founding Product Engineer at FlyWl</span>,
           owning backend systems end-to-end, including FlyWl's multi-LLM AI chatbot (Claude, OpenAI, Llama 3) with
-          streaming responses, tool calling via MCP, and LLM observability.
+          streaming responses, tool calling via MCP, and LLM observability, and detections for a production
+          multi-agent AI platform for procurement spend.
         </p>
       </motion.div>
     </motion.div>

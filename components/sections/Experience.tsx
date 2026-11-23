@@ -9,7 +9,7 @@ type Job = {
   active:  boolean
   stack:   string
   bullets: string[]
-  sub?:    { title: string; bullets: string[] }
+  subs?:   { title: string; stack?: string; bullets: string[] }[]
   tags:    string[]
 }
 
@@ -30,7 +30,18 @@ const jobs: Job[] = [
       'Built full-text and fuzzy Product Catalog search on ElasticSearch — custom analyzers, relevance scoring, multi-field boosting',
       'Use Cursor AI and Claude Code daily for boilerplate, test scaffolding and cross-module refactoring — cutting feature delivery time by 40%',
     ],
-    sub: {
+    subs: [{
+      title: 'FlyWl AI Agent Platform — Multi-Agent Procurement AI',
+      stack: 'TypeScript · NestJS · React · Vercel AI SDK · Claude / OpenAI · LLM Tool Use · MCP · PostgreSQL · pg-boss · Zod · Jest · Langfuse · New Relic',
+      bullets: [
+        'Worked on a production multi-agent AI platform for enterprise cloud and SaaS procurement (Claude, OpenAI) with three agents: a spend-insight agent that analyzes cost data and recommends actions; a contract-extraction agent that turns contract PDFs into structured commitments, pricing, and clauses, citing the page for each value; and a catalog-enrichment agent that uses web search to identify the vendor, website, and logo behind marketplace listings.',
+        'Built AI-spend detections for the spend-insight agent: runaway API-key spend, unattributed key spend, prompt-cache efficiency gaps, batch-processing savings, and user spend concentration.',
+        'Added per-key LLM cost tracking for OpenAI and Anthropic — spend spikes are traced to a named key, workspace, and owner, with per-key breakdowns and trend charts.',
+        'Worked within a six-stage queued agent pipeline (detect, narrate, act, judge, persist, alert) designed so code computes every financial figure and models only write the explanation.',
+        'Made insight cards more reliable: stopped card flicker, scaled detection minimums to each customer\'s spend, and added a guard so the agent never recommends a more expensive or less suitable model.',
+        'Built the product-catalog (PIM) review screens and API changes that show the catalog-enrichment agent\'s output, including vendor and product-family logos, so reviewers can check AI-identified vendors before they go live.',
+      ],
+    }, {
       title: 'FlyWl AI Chatbot — Sales & Procurement Assistant',
       bullets: [
         'Chat over uploaded contracts and documents (PDF, Word, Excel, scanned images via OCR), grounded in the user’s data, live web search and AWS Marketplace',
@@ -40,8 +51,8 @@ const jobs: Job[] = [
         'No hallucinated figures: spend numbers are computed deterministically in code — the LLM only writes the narrative',
         'LLM observability and quality gates: Langfuse + OpenTelemetry tracing and an LLM-as-judge eval suite to catch regressions before release',
       ],
-    },
-    tags: ['NestJS', 'PostgreSQL', 'ElasticSearch', 'Kafka', 'Redis', 'AWS SQS/SNS', 'Vector DB', 'Vercel AI SDK', 'MCP', 'Langfuse', 'PBAC'],
+    }],
+    tags: ['NestJS', 'PostgreSQL', 'ElasticSearch', 'Kafka', 'Redis', 'AWS SQS/SNS', 'Vector DB', 'Vercel AI SDK', 'Multi-Agent', 'MCP', 'pg-boss', 'Langfuse', 'New Relic', 'PBAC'],
   },
   {
     company: 'Klub',
@@ -122,15 +133,16 @@ export default function Experience() {
 
                 <Bullets items={job.bullets} />
 
-                {job.sub && (
-                  <div className="mt-5 rounded-lg border border-violet/20 bg-violet/5 p-4">
-                    <p className="flex items-center gap-2 text-sm font-semibold text-violet mb-3">
+                {job.subs?.map((sub) => (
+                  <div key={sub.title} className="mt-5 rounded-lg border border-violet/20 bg-violet/5 p-4">
+                    <p className="flex items-center gap-2 text-sm font-semibold text-violet mb-1">
                       <span className="font-mono text-xs">✦</span>
-                      {job.sub.title}
+                      {sub.title}
                     </p>
-                    <Bullets items={job.sub.bullets} />
+                    {sub.stack && <p className="font-mono text-[11px] text-muted italic mb-3">{sub.stack}</p>}
+                    <Bullets items={sub.bullets} />
                   </div>
-                )}
+                ))}
 
                 <div className="flex flex-wrap gap-1.5 pt-4 mt-5 border-t border-border">
                   {job.tags.map((t) => (

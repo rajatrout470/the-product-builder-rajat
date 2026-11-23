@@ -46,7 +46,8 @@ export default function ResumePage() {
             APIs using NestJS and Node.js. Deep expertise in distributed architecture — Kafka pipelines, AWS serverless
             infrastructure, ElasticSearch, PostgreSQL, and vector databases. Currently Founding Product Engineer at FlyWl, owning
             backend systems end-to-end in a fast-moving startup, including FlyWl&apos;s multi-LLM AI chatbot (Claude, OpenAI, Llama 3)
-            with streaming responses, tool calling via MCP, and LLM observability. Uses Cursor AI and Claude Code daily to accelerate
+            with streaming responses, tool calling via MCP, and LLM observability, and detections for a production multi-agent AI
+            platform for procurement spend. Uses Cursor AI and Claude Code daily to accelerate
             development cycles by 40% without compromising code quality or system reliability.
           </p>
         </Section>
@@ -70,6 +71,18 @@ export default function ResumePage() {
             ]}
           />
           <div className="-mt-2 mb-5 pl-3 border-l-2 border-violet-200">
+            <p className="font-semibold text-violet-700 mb-0.5">FlyWl AI Agent Platform — Multi-Agent Procurement AI</p>
+            <p className="text-[11px] italic text-gray-400 mb-1.5">TypeScript · NestJS · React · Vercel AI SDK · Claude / OpenAI · LLM Tool Use · MCP · PostgreSQL · pg-boss · Zod · Jest · Langfuse · New Relic</p>
+            <Bullets items={[
+              'Worked on a production multi-agent AI platform for enterprise cloud and SaaS procurement (Claude, OpenAI) with three agents: a spend-insight agent that analyzes cost data and recommends actions; a contract-extraction agent that turns contract PDFs into structured commitments, pricing, and clauses, citing the page for each value; and a catalog-enrichment agent that uses web search to identify the vendor, website, and logo behind marketplace listings.',
+              'Built AI-spend detections for the spend-insight agent: runaway API-key spend, unattributed key spend, prompt-cache efficiency gaps, batch-processing savings, and user spend concentration.',
+              'Added per-key LLM cost tracking for OpenAI and Anthropic — spend spikes are traced to a named key, workspace, and owner, with per-key breakdowns and trend charts.',
+              'Worked within a six-stage queued agent pipeline (detect, narrate, act, judge, persist, alert) designed so code computes every financial figure and models only write the explanation.',
+              'Made insight cards more reliable: stopped card flicker, scaled detection minimums to each customer\'s spend, and added a guard so the agent never recommends a more expensive or less suitable model.',
+              'Built the product-catalog (PIM) review screens and API changes that show the catalog-enrichment agent\'s output, including vendor and product-family logos, so reviewers can check AI-identified vendors before they go live.',
+            ]} />
+          </div>
+          <div className="mb-5 pl-3 border-l-2 border-violet-200">
             <p className="font-semibold text-violet-700 mb-1.5">FlyWl AI Chatbot — Sales &amp; Procurement Assistant</p>
             <Bullets items={[
               "Built FlyWl's AI chatbot for sales and procurement teams: users chat over uploaded contracts and documents (PDF, Word, Excel, scanned images via OCR) and get answers grounded in their own data, live web search, and AWS Marketplace.",
@@ -102,12 +115,13 @@ export default function ResumePage() {
           <div className="space-y-1.5">
             {[
               ['Core Languages',      'TypeScript, JavaScript (ES2022), Node.js'],
-              ['Frameworks',          'NestJS, Express.js, Next.js, GraphQL, REST API Design, Serverless Framework'],
-              ['AI & LLM',            'Anthropic Claude, OpenAI, Ollama (Llama 3), Vercel AI SDK, MCP, Tool Calling, SSE Streaming, RAG, Embeddings, LLM Evals'],
+              ['Frameworks',          'NestJS, Express.js, React, Next.js, GraphQL, REST API Design, Serverless Framework'],
+              ['AI & LLM',            'Anthropic Claude, OpenAI, Ollama (Llama 3), Vercel AI SDK, Multi-Agent Pipelines, MCP, Tool Calling, SSE Streaming, RAG, Embeddings, LLM Evals, LLM Cost Tracking'],
               ['Databases',           'PostgreSQL, MongoDB, Redis, ElasticSearch, Vector DB (pgvector / Pinecone), Prisma, TypeORM'],
               ['Cloud & Infra',       'AWS Lambda, SQS, SNS, S3, CloudWatch, Cognito, AWS Marketplace, EDP, Docker'],
               ['Messaging & Events',  'Apache Kafka, Event-Driven Architecture, pg-boss, BPMN, Camunda'],
               ['Auth & Security',     'JWT, PBAC, ORY Oathkeeper / Kratos, OAuth 2.0, AWS Cognito'],
+              ['Testing & Validation', 'Jest, Zod'],
               ['AI Dev Tools',        'Cursor AI, Claude Code — daily use for code generation, refactoring, test scaffolding'],
               ['Observability',       'Langfuse, OpenTelemetry, New Relic, Mixpanel, SuprSend, CloudWatch, AsyncLocalStorage, Structured Logging'],
               ['Architecture & APIs', 'Microservices, Domain-Driven Design, System Design, CI/CD, Vector Similarity Search'],

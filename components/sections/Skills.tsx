@@ -3,13 +3,14 @@
 import { motion } from 'framer-motion'
 
 const groups = [
-  { label: 'AI & LLM',            highlight: true, skills: ['Anthropic Claude', 'OpenAI', 'Ollama (Llama 3)', 'Vercel AI SDK', 'MCP', 'Tool Calling', 'SSE Streaming', 'RAG', 'Embeddings', 'LLM Evals'] },
+  { label: 'AI & LLM',            highlight: true, skills: ['Anthropic Claude', 'OpenAI', 'Ollama (Llama 3)', 'Vercel AI SDK', 'Multi-Agent Pipelines', 'MCP', 'Tool Calling', 'SSE Streaming', 'RAG', 'Embeddings', 'LLM Evals', 'LLM Cost Tracking'] },
   { label: 'Core Languages',      skills: ['TypeScript', 'JavaScript (ES2022)', 'Node.js'] },
-  { label: 'Frameworks',          skills: ['NestJS', 'Express.js', 'Next.js', 'GraphQL', 'REST API Design', 'Serverless Framework'] },
+  { label: 'Frameworks',          skills: ['NestJS', 'Express.js', 'React', 'Next.js', 'GraphQL', 'REST API Design', 'Serverless Framework'] },
   { label: 'Databases',           skills: ['PostgreSQL', 'MongoDB', 'Redis', 'ElasticSearch', 'pgvector', 'Pinecone', 'Prisma', 'TypeORM'] },
   { label: 'Cloud & Infra',       skills: ['AWS Lambda', 'SQS', 'SNS', 'S3', 'CloudWatch', 'Cognito', 'AWS Marketplace', 'EDP', 'Docker'] },
   { label: 'Messaging & Events',  skills: ['Apache Kafka', 'Event-Driven Architecture', 'pg-boss', 'BPMN', 'Camunda'] },
   { label: 'Auth & Security',     skills: ['JWT', 'PBAC', 'ORY Oathkeeper', 'ORY Kratos', 'OAuth 2.0', 'AWS Cognito'] },
+  { label: 'Testing & Validation', skills: ['Jest', 'Zod'] },
   { label: 'Observability',       skills: ['Langfuse', 'OpenTelemetry', 'New Relic', 'Mixpanel', 'SuprSend', 'CloudWatch', 'AsyncLocalStorage', 'Structured Logging'] },
   { label: 'AI Dev Tools',        skills: ['Cursor AI', 'Claude Code'] },
   { label: 'Architecture & APIs', skills: ['Microservices', 'Domain-Driven Design', 'System Design', 'CI/CD', 'Vector Similarity Search'] },
