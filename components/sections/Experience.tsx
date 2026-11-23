@@ -2,45 +2,82 @@
 
 import { motion } from 'framer-motion'
 
-const jobs = [
+type Job = {
+  company: string
+  role:    string
+  period:  string
+  active:  boolean
+  stack:   string
+  bullets: string[]
+  sub?:    { title: string; bullets: string[] }
+  tags:    string[]
+}
+
+const jobs: Job[] = [
   {
     company: 'FlyWl',
-    role:    'Founding Product Engineer',
+    role:    'Founding Product Engineer (Backend)',
     period:  'Nov 2024 – Present',
     active:  true,
+    stack:   'NestJS · PostgreSQL · AWS SQS/SNS · ElasticSearch · Redis · Kafka · Vector DB · Vercel AI SDK · Claude / OpenAI',
     bullets: [
-      'Shaped product vision, feature scoping, and roadmap alongside founders',
-      'Built Seller Profile & Claim Module end-to-end (largest feature) — CRUD with pagination/search, FUID generation via nanoid, seller claim flow, PBAC guards, login refactor, company attribute updates, and vendor search by website',
-      'Engineered Notification & Analytics Event Engine from scratch — event builder, SNS publisher interface, event store consumer; integrated SuprSend (Email/Push) and Mixpanel analytics; session ID propagation via AsyncLocalStorage into structured logger',
-      'Implemented PBAC permission system — guards on role/permission controllers, permission management APIs (view, add, update), FinOps and procurement roles, internal user migration permissions',
-      'Built AWS Spend Modelling & EDP — spend comparison, EDP commitment costs, marketplace summary, drawdown overage and dead weight loss calculations; AWS Marketplace users migration',
-      'Designed AI-powered vendor matching: LLM API enriches vendor details from the product catalog, creates embeddings stored in a vector DB — enabling semantic similarity search at match time',
-      'Built Wallet/Credit Module — wallet creation API, global ledger, cron job for credit expiry, expired credit balance calculations',
-      'Built Product Catalog search engine (ElasticSearch), User Invitations flow (role-based access, invitedBy tracking), and AWS Cognito auth',
-      'Used Cursor AI, ChatGPT, and Claude Code as force multipliers — cut feature delivery time by ~40%',
+      'Architected and built multiple NestJS microservices end-to-end — seller profiles, notification engine, wallet/credit module, AWS spend modelling — each independently deployable with clean domain boundaries',
+      'Designed RESTful APIs with pagination, search, filtering and PBAC role guards; implemented FUID generation, polymorphic associations and soft-delete patterns across services',
+      'Built a Notification & Event Engine: SNS publisher interface, event store consumer, SuprSend (Email/Push) and Mixpanel; session IDs propagated via AsyncLocalStorage into a structured logger',
+      'Engineered AI-powered vendor matching: LLM enrichment of vendor data, embeddings stored in a vector DB, semantic similarity search at match time',
+      'Built a Wallet/Credit module: global ledger, ACID-safe earn/redeem/rollback flows, and a NestJS-scheduler cron for credit expiry',
+      'Implemented a PBAC permission system: role/permission guards as NestJS decorators, permission management APIs, FinOps/procurement roles',
+      'Built full-text and fuzzy Product Catalog search on ElasticSearch — custom analyzers, relevance scoring, multi-field boosting',
+      'Use Cursor AI and Claude Code daily for boilerplate, test scaffolding and cross-module refactoring — cutting feature delivery time by 40%',
     ],
-    tags: ['NestJS', 'ElasticSearch', 'AWS', 'SNS', 'Mixpanel', 'PBAC', 'SuprSend', 'LLM APIs', 'Vector DB', 'Claude Code', 'AsyncLocalStorage'],
+    sub: {
+      title: 'FlyWl AI Chatbot — Sales & Procurement Assistant',
+      bullets: [
+        'Chat over uploaded contracts and documents (PDF, Word, Excel, scanned images via OCR), grounded in the user’s data, live web search and AWS Marketplace',
+        'Provider-agnostic LLM layer on the Vercel AI SDK — Claude, GPT-4 and self-hosted Llama 3 (Ollama), switchable per tenant',
+        'Streaming NestJS backend: token-by-token SSE, JWT-authenticated sessions, and a kill switch to disable AI instantly in production',
+        'MCP tools let the bot query live AWS Marketplace and FlyWl data (listings, offers, agreements) mid-conversation, with per-tool timeouts',
+        'No hallucinated figures: spend numbers are computed deterministically in code — the LLM only writes the narrative',
+        'LLM observability and quality gates: Langfuse + OpenTelemetry tracing and an LLM-as-judge eval suite to catch regressions before release',
+      ],
+    },
+    tags: ['NestJS', 'PostgreSQL', 'ElasticSearch', 'Kafka', 'Redis', 'AWS SQS/SNS', 'Vector DB', 'Vercel AI SDK', 'MCP', 'Langfuse', 'PBAC'],
   },
   {
     company: 'Klub',
     role:    'SDE1 — Backend Engineer',
     period:  'Nov 2022 – Sept 2024',
     active:  false,
+    stack:   'Node.js · Express · PostgreSQL · Kafka · Camunda · AWS Lambda · Serverless',
     bullets: [
-      'Automated 98% of loan applications — 90% reduction in manual ops workload',
-      'Built product config system with PostgreSQL indexing — 10× faster queries',
-      'Document storage with polymorphic associations — 80% faster search',
-      'Kafka event-driven data platform for NBFC partners — 70% faster delivery SLA',
-      'Managed 20+ BPMN workflows in Camunda — 50% fewer manual interventions',
-      'Upgraded 7+ microservices from Node.js v12 to v18 with zero downtime',
+      'Built and maintained 10 Node.js microservices for fintech loan processing — each owning its DB schema, event contracts and API surface',
+      'Designed serverless REST APIs on AWS Lambda (Serverless Framework) for loan applications, document storage and partner integrations',
+      'Automated 98% of loan applications end-to-end with rule-engine-driven services — reduced manual ops workload by 90%',
+      'Built a Kafka data pipeline for NBFC partners: schema-validated producers/consumers, dead-letter queues and retries — 70% faster data delivery SLA',
+      'Optimised PostgreSQL with composite indexes and materialized views — 10× faster config lookups, 80% faster document search',
+      'Managed 20 BPMN workflows in Camunda integrated with Node.js services — 50% fewer manual interventions',
+      'Upgraded 7+ microservices from Node.js v12 to v18 — dependency audits, ESM migration, zero-downtime deploys',
     ],
-    tags: ['Node.js', 'PostgreSQL', 'Kafka', 'Camunda', 'Serverless', 'ORY Auth'],
+    tags: ['Node.js', 'Express', 'PostgreSQL', 'Kafka', 'Camunda', 'AWS Lambda', 'Serverless'],
   },
 ]
 
 const fade = {
   hidden: { opacity: 0, y: 16 },
-  show:   { opacity: 1, y: 0,  transition: { duration: 0.45 } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.45 } },
+}
+
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.map((b) => (
+        <li key={b} className="flex gap-2.5 text-sm text-slate-600 dark:text-slate-400 leading-snug">
+          <span className="text-dim font-mono flex-shrink-0 mt-0.5">—</span>
+          {b}
+        </li>
+      ))}
+    </ul>
+  )
 }
 
 export default function Experience() {
@@ -54,30 +91,23 @@ export default function Experience() {
     >
       <motion.div variants={fade}>
         <p className="section-label mb-2">03 — experience</p>
-        <h2 className="font-display font-bold text-3xl text-slate-900" style={{ fontFamily: 'Syne, sans-serif' }}>
-          Where I've Worked
-        </h2>
+        <h2 className="section-title">Where I’ve Worked</h2>
       </motion.div>
 
-      {/* Timeline */}
       <div className="relative">
         <div className="absolute left-[15px] top-4 bottom-4 w-px bg-border" />
 
         <div className="space-y-6">
           {jobs.map((job) => (
-            <motion.div key={job.company} variants={fade} className="flex gap-6">
-              {/* Dot */}
+            <motion.div key={job.company} variants={fade} className="flex gap-3 sm:gap-6">
               <div className="flex-shrink-0 w-8 flex justify-center pt-6">
-                <div className={`w-2.5 h-2.5 rounded-full border-2 border-white shadow z-10 ${job.active ? 'bg-violet' : 'bg-dim'}`} />
+                <div className={`w-2.5 h-2.5 rounded-full border-2 border-surface shadow z-10 ${job.active ? 'bg-violet' : 'bg-dim'}`} />
               </div>
 
-              {/* Card */}
-              <div className="flex-1 bg-surface rounded-xl border border-border shadow-card card-hover p-6 mb-2">
-                <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
+              <div className="flex-1 min-w-0 bg-surface rounded-xl border border-border shadow-card p-5 sm:p-6 mb-2">
+                <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
                   <div>
-                    <h3 className="font-display font-bold text-xl text-slate-900" style={{ fontFamily: 'Syne, sans-serif' }}>
-                      {job.company}
-                    </h3>
+                    <h3 className="font-display font-bold text-xl text-slate-900 dark:text-slate-100">{job.company}</h3>
                     <p className="text-sm text-muted mt-0.5">{job.role}</p>
                     <p className="font-mono text-xs text-dim mt-1">{job.period}</p>
                   </div>
@@ -88,19 +118,23 @@ export default function Experience() {
                     </span>
                   )}
                 </div>
+                <p className="font-mono text-[11px] text-muted italic mb-4">{job.stack}</p>
 
-                <ul className="space-y-2 mb-5">
-                  {job.bullets.map((b, i) => (
-                    <li key={i} className="flex gap-2.5 text-sm text-slate-600 leading-snug">
-                      <span className="text-dim font-mono flex-shrink-0 mt-0.5">—</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                <Bullets items={job.bullets} />
 
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border">
+                {job.sub && (
+                  <div className="mt-5 rounded-lg border border-violet/20 bg-violet/5 p-4">
+                    <p className="flex items-center gap-2 text-sm font-semibold text-violet mb-3">
+                      <span className="font-mono text-xs">✦</span>
+                      {job.sub.title}
+                    </p>
+                    <Bullets items={job.sub.bullets} />
+                  </div>
+                )}
+
+                <div className="flex flex-wrap gap-1.5 pt-4 mt-5 border-t border-border">
                   {job.tags.map((t) => (
-                    <span key={t} className="tag bg-gray-50 text-slate-600 border-border">{t}</span>
+                    <span key={t} className="tag bg-subtle text-slate-600 dark:text-slate-400 border-border">{t}</span>
                   ))}
                 </div>
               </div>

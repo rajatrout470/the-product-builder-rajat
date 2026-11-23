@@ -5,20 +5,22 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        bg:      '#f9f9f9',
-        surface: '#ffffff',
-        border:  '#e5e7eb',
-        violet:  '#7c3aed',
-        muted:   '#6b7280',
-        dim:     '#d1d5db',
+        bg:      'rgb(var(--c-bg) / <alpha-value>)',
+        surface: 'rgb(var(--c-surface) / <alpha-value>)',
+        subtle:  'rgb(var(--c-subtle) / <alpha-value>)',
+        border:  'rgb(var(--c-border) / <alpha-value>)',
+        violet:  'rgb(var(--c-violet) / <alpha-value>)',
+        muted:   'rgb(var(--c-muted) / <alpha-value>)',
+        dim:     'rgb(var(--c-dim) / <alpha-value>)',
       },
       fontFamily: {
-        sans:    ['Inter', 'sans-serif'],
+        sans:    ['Montserrat', 'sans-serif'],
         mono:    ['JetBrains Mono', 'monospace'],
-        display: ['Syne', 'sans-serif'],
+        display: ['Montserrat', 'sans-serif'],
       },
       boxShadow: {
         card:       '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',

@@ -9,13 +9,15 @@ const stats = [
   { value: 10, suffix: '×', label: 'Query Speed',      desc: 'PostgreSQL optimisation'         },
   { value: 80, suffix: '%', label: 'Search Speed',     desc: 'Document search improvement'     },
   { value: 70, suffix: '%', label: 'Data Delivery',    desc: 'Kafka pipeline SLA gain'         },
-  { value: 20, suffix: '+', label: 'BPMN Workflows',   desc: 'Camunda processes managed'       },
+  { value: 10, suffix: '',  label: 'Microservices',    desc: 'Owned end-to-end at Klub'        },
 ]
 
 const auditLines = [
-  { key: 'microservices upgraded',  val: '7',                                           valCls: 'text-emerald-400' },
+  { key: 'microservices upgraded',  val: '7+',                                          valCls: 'text-emerald-400' },
   { key: 'manual workload reduced', val: '90%',                                         valCls: 'text-violet-400'  },
-  { key: 'AI tooling',              val: 'Cursor AI, ChatGPT',                          valCls: 'text-amber-400'   },
+  { key: 'AI tooling',              val: 'Cursor AI, Claude Code',                     valCls: 'text-amber-400'   },
+  { key: 'ai systems shipped',      val: 'Procurement Chatbot, Laksh AI, Vendor Matching', valCls: 'text-sky-400'  },
+  { key: 'llms in production',      val: 'Claude, GPT-4, Llama 3',                       valCls: 'text-violet-400' },
   { key: 'systems shipped',         val: 'Credit Engine, Search, Notifications, Loans', valCls: 'text-sky-400'     },
   { key: 'status',                  val: 'HEALTHY ✓',                                   valCls: 'text-emerald-400' },
 ]
@@ -37,7 +39,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   }, [inView, value])
 
   return (
-    <div ref={ref} className="font-display font-extrabold text-4xl text-slate-900" style={{ fontFamily: 'Syne, sans-serif' }}>
+    <div ref={ref} className="font-display font-extrabold text-4xl text-slate-900 dark:text-slate-100">
       {count}{suffix}
     </div>
   )
@@ -58,8 +60,8 @@ export default function Metrics() {
       className="space-y-8"
     >
       <motion.div variants={fade}>
-        <p className="section-label mb-2">05 — metrics</p>
-        <h2 className="font-display font-bold text-3xl text-slate-900" style={{ fontFamily: 'Syne, sans-serif' }}>
+        <p className="section-label mb-2">07 — metrics</p>
+        <h2 className="section-title">
           Impact by the Numbers
         </h2>
       </motion.div>
@@ -68,7 +70,7 @@ export default function Metrics() {
         {stats.map((s) => (
           <div key={s.label} className="bg-surface rounded-xl border border-border p-5 shadow-card card-hover">
             <Counter value={s.value} suffix={s.suffix} />
-            <p className="font-semibold text-sm text-slate-700 mt-2">{s.label}</p>
+            <p className="font-semibold text-sm text-slate-700 dark:text-slate-300 mt-2">{s.label}</p>
             <p className="text-xs text-muted mt-0.5">{s.desc}</p>
           </div>
         ))}

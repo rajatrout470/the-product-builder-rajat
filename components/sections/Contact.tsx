@@ -12,7 +12,8 @@ const links = [
 
 const openTo = [
   'Founding / early-stage engineering roles',
-  'Backend-heavy SDE2+ positions',
+  'Backend-heavy SDE2+ / senior positions',
+  'LLM / AI agent platform engineering',
   'Infra-heavy product companies',
   'Fintech & financial infrastructure',
   'AI-native startups',
@@ -34,12 +35,12 @@ export default function Contact() {
       className="space-y-8"
     >
       <motion.div variants={fade}>
-        <p className="section-label mb-2">06 — contact</p>
-        <h2 className="font-display font-bold text-3xl text-slate-900" style={{ fontFamily: 'Syne, sans-serif' }}>
+        <p className="section-label mb-2">08 — contact</p>
+        <h2 className="section-title">
           Let's Talk
         </h2>
-        <p className="text-slate-500 text-sm mt-2 max-w-md leading-relaxed">
-          Open to founding eng roles, backend-heavy SDE2+, and infra-heavy products in fintech or AI-native spaces.
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-2 max-w-md leading-relaxed">
+          Open to founding eng roles, senior backend / AI-platform roles, and infra-heavy products in fintech or AI-native spaces.
         </p>
       </motion.div>
 
@@ -55,23 +56,23 @@ export default function Contact() {
                 rel="noreferrer"
                 className="flex items-center gap-4 p-4 bg-surface rounded-xl border border-border shadow-card hover:border-violet/40 transition-colors duration-150 group"
               >
-                <div className="w-9 h-9 rounded-lg bg-gray-50 border border-border flex items-center justify-center flex-shrink-0 font-mono text-xs text-slate-500 group-hover:border-violet/30 group-hover:text-violet transition-colors">
+                <div className="w-9 h-9 rounded-lg bg-subtle border border-border flex items-center justify-center flex-shrink-0 font-mono text-xs text-slate-500 dark:text-slate-400 group-hover:border-violet/30 group-hover:text-violet transition-colors">
                   {c.icon}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-mono text-[10px] text-muted uppercase tracking-wider">{c.label}</p>
-                  <p className="text-sm font-medium text-slate-800 truncate">{c.value}</p>
+                  <p className="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">{c.value}</p>
                 </div>
                 <span className="text-dim text-sm group-hover:text-violet transition-colors">↗</span>
               </a>
             ) : (
               <div key={c.label} className="flex items-center gap-4 p-4 bg-surface rounded-xl border border-border shadow-card">
-                <div className="w-9 h-9 rounded-lg bg-gray-50 border border-border flex items-center justify-center flex-shrink-0 font-mono text-xs text-slate-500">
+                <div className="w-9 h-9 rounded-lg bg-subtle border border-border flex items-center justify-center flex-shrink-0 font-mono text-xs text-slate-500 dark:text-slate-400">
                   {c.icon}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-mono text-[10px] text-muted uppercase tracking-wider">{c.label}</p>
-                  <p className="text-sm font-medium text-slate-800">{c.value}</p>
+                  <p className="text-sm font-medium text-slate-800 dark:text-slate-200">{c.value}</p>
                 </div>
               </div>
             )
@@ -81,10 +82,10 @@ export default function Contact() {
         {/* Open to + CTA */}
         <motion.div variants={fade} className="space-y-4">
           <div className="bg-surface rounded-xl border border-border p-6 shadow-card">
-            <h3 className="font-semibold text-slate-900 text-sm mb-4">Open to</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm mb-4">Open to</h3>
             <ul className="space-y-2.5">
               {openTo.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-400">
                   <span className="font-mono text-violet mt-0.5 flex-shrink-0 text-xs">+</span>
                   {item}
                 </li>
@@ -93,7 +94,7 @@ export default function Contact() {
           </div>
 
           <div className="rounded-xl border border-violet/20 bg-violet/5 p-6">
-            <p className="text-sm text-slate-600 leading-relaxed mb-5">
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
               Building something in fintech, AI, or infra? I'd love to hear about it.
             </p>
             <a

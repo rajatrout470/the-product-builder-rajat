@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ThemeToggle from './ThemeToggle'
 
 const NAV = [
   { id: 'about',        label: 'About'      },
-  { id: 'skills',       label: 'Skills'     },
+  { id: 'ai-agents',    label: 'AI Agents'  },
   { id: 'experience',   label: 'Experience' },
+  { id: 'freelance',    label: 'Freelance'  },
   { id: 'what-i-built', label: 'Projects'   },
+  { id: 'skills',       label: 'Skills'     },
   { id: 'metrics',      label: 'Metrics'    },
   { id: 'contact',      label: 'Contact'    },
 ]
@@ -52,12 +55,12 @@ export default function NavHeader() {
 
   return (
     <>
-      <header className={`sticky top-0 z-40 bg-white border-b border-border transition-shadow duration-200 ${elevated ? 'shadow-sm' : ''}`}>
+      <header className={`sticky top-0 z-40 bg-surface border-b border-border transition-shadow duration-200 ${elevated ? 'shadow-sm' : ''}`}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 gap-2">
           {/* Brand */}
           <button
             onClick={() => scrollTo('about')}
-            className="font-mono text-sm font-semibold text-slate-900 hover:text-violet transition-colors shrink-0"
+            className="font-mono text-sm font-semibold text-slate-900 dark:text-slate-100 hover:text-violet transition-colors shrink-0"
           >
             rajat<span className="text-violet">.</span>rout
           </button>
@@ -69,7 +72,7 @@ export default function NavHeader() {
                 key={id}
                 onClick={() => scrollTo(id)}
                 className={`relative px-3 h-14 text-sm whitespace-nowrap transition-colors duration-150 ${
-                  active === id ? 'text-violet font-medium' : 'text-muted hover:text-slate-700'
+                  active === id ? 'text-violet font-medium' : 'text-muted hover:text-slate-700 dark:hover:text-slate-200'
                 }`}
               >
                 {label}
@@ -82,6 +85,8 @@ export default function NavHeader() {
               </button>
             ))}
           </nav>
+
+          <ThemeToggle />
 
           {/* Terminal button — always visible */}
           <button
@@ -98,9 +103,9 @@ export default function NavHeader() {
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 shrink-0"
             aria-label="Toggle menu"
           >
-            <motion.span animate={menuOpen ? { rotate: 45, y: 7 }  : { rotate: 0, y: 0 }} className="block w-5 h-px bg-slate-800 origin-center" />
-            <motion.span animate={menuOpen ? { opacity: 0 }         : { opacity: 1 }}      className="block w-5 h-px bg-slate-800" />
-            <motion.span animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }} className="block w-5 h-px bg-slate-800 origin-center" />
+            <motion.span animate={menuOpen ? { rotate: 45, y: 7 }  : { rotate: 0, y: 0 }} className="block w-5 h-px bg-slate-800 dark:bg-slate-200 origin-center" />
+            <motion.span animate={menuOpen ? { opacity: 0 }         : { opacity: 1 }}      className="block w-5 h-px bg-slate-800 dark:bg-slate-200" />
+            <motion.span animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }} className="block w-5 h-px bg-slate-800 dark:bg-slate-200 origin-center" />
           </button>
         </div>
       </header>
@@ -111,20 +116,20 @@ export default function NavHeader() {
           <>
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-30 bg-black/10"
+              className="fixed inset-0 z-30 bg-black/10 dark:bg-black/40"
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
-              className="fixed top-14 left-0 right-0 z-30 bg-white border-b border-border shadow-md md:hidden"
+              className="fixed top-14 left-0 right-0 z-30 bg-surface border-b border-border shadow-md md:hidden"
             >
               {NAV.map(({ id, label }) => (
                 <button
                   key={id}
                   onClick={() => scrollTo(id)}
                   className={`flex items-center justify-between w-full px-6 py-3.5 text-sm border-b border-border last:border-0 transition-colors ${
-                    active === id ? 'text-violet font-medium' : 'text-slate-700'
+                    active === id ? 'text-violet font-medium' : 'text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   <span>{label}</span>

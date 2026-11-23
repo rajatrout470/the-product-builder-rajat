@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 const cards = [
   {
     label: 'Current Mission',
-    body:  'Building resilient backend systems at FlyWl — from search engines to credit ledgers to notification pipelines. Owning the full lifecycle from design to production.',
+    body:  'Owning backend systems end-to-end at FlyWl — from a multi-LLM AI chatbot with MCP tool calling to credit ledgers, search and notification pipelines.',
   },
   {
     label: 'Core Philosophy',
@@ -13,11 +13,11 @@ const cards = [
   },
   {
     label: 'How I Work',
-    body:  'I use Cursor AI and ChatGPT as force multipliers, not crutches. Prototype fast, measure with data, iterate. Cut feature delivery time by ~40% this way.',
+    body:  'Cursor AI and Claude Code are daily tools for boilerplate, test scaffolding and cross-module refactors — 40% faster delivery without trading off quality or reliability.',
   },
   {
-    label: 'Beyond Code',
-    body:  "Deeply interested in product strategy, fintech infra, and AI-native tooling. I work best where backend engineers have a real voice in product decisions.",
+    label: 'On AI Systems',
+    body:  "LLMs are only useful when they're grounded, observable and safe to turn off. I treat agents like any other production service — traced, evaluated and guarded.",
   },
 ]
 
@@ -37,7 +37,7 @@ export default function About() {
     >
       <motion.div variants={fade}>
         <p className="section-label mb-2">01 — about</p>
-        <h2 className="font-display font-bold text-3xl text-slate-900" style={{ fontFamily: 'Syne, sans-serif' }}>
+        <h2 className="section-title">
           Who I Am
         </h2>
       </motion.div>
@@ -60,11 +60,12 @@ export default function About() {
             {[
               ['"name"',       '"Rajat Kumar Rout"'],
               ['"role"',       '"Backend Eng / Founding Product Eng"'],
-              ['"experience"', '"3+ years"'],
+              ['"experience"', '"4 years"'],
               ['"superpower"', '"Ambiguous problems → scalable systems"'],
               ['"location"',   '"Bengaluru, India"'],
               ['"status"',     '"AVAILABLE_FOR_HIRE"'],
               ['"stack"',      '["NestJS","Node.js","AWS","Kafka","ElasticSearch"]'],
+              ['"ai"',         '["Claude","OpenAI","Llama 3","MCP","RAG","Langfuse"]'],
             ].map(([k, v]) => (
               <div key={k} className="flex gap-1.5 flex-wrap">
                 <span className="text-violet-400">{k}</span>
@@ -84,21 +85,22 @@ export default function About() {
       <motion.div variants={fade} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {cards.map((c) => (
           <div key={c.label} className="bg-surface rounded-xl border border-border p-5 shadow-card card-hover">
-            <h3 className="font-semibold text-sm text-slate-900 mb-2">{c.label}</h3>
-            <p className="text-sm text-slate-500 leading-relaxed">{c.body}</p>
+            <h3 className="font-semibold text-sm text-slate-900 dark:text-slate-100 mb-2">{c.label}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{c.body}</p>
           </div>
         ))}
       </motion.div>
 
       {/* Summary */}
-      <motion.div variants={fade} className="rounded-xl border-l-4 border-l-violet border border-border bg-surface p-6 shadow-card">
-        <p className="section-label mb-3">// summary</p>
-        <p className="text-slate-600 text-sm leading-relaxed">
-          I'm a backend engineer with 3+ years building microservices, event-driven systems, and fintech
-          infrastructure at scale. Currently a{' '}
-          <span className="font-semibold text-slate-900">Founding Product Engineer at FlyWl</span> — not
-          just writing code, but helping define what gets built and why. I do my best work in small,
-          high-ownership teams where engineering and product thinking are inseparable.
+      <motion.div variants={fade} className="bg-surface rounded-xl border border-border p-5 shadow-card card-hover">
+        <h3 className="font-semibold text-sm text-slate-900 dark:text-slate-100 mb-2">Summary</h3>
+        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+          Backend engineer with 4 years designing and shipping microservices, event-driven systems and
+          RESTful APIs with NestJS and Node.js — Kafka pipelines, AWS serverless, ElasticSearch, PostgreSQL
+          and vector databases. Currently{' '}
+          <span className="font-semibold text-slate-900 dark:text-slate-100">Founding Product Engineer at FlyWl</span>,
+          owning backend systems end-to-end, including FlyWl's multi-LLM AI chatbot (Claude, OpenAI, Llama 3) with
+          streaming responses, tool calling via MCP, and LLM observability.
         </p>
       </motion.div>
     </motion.div>
